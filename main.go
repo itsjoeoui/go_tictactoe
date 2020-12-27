@@ -59,7 +59,7 @@ func (b Board) isValid(pos int) bool {
 
 // Returns a valid position input from the user
 func (b Board) getPos() int {
-	for true {
+	for {
 		fmt.Print("Pick a number from 1-9: ")
 		var pos int
 		fmt.Scan(&pos)
@@ -67,7 +67,6 @@ func (b Board) getPos() int {
 			return pos
 		}
 	}
-	return -1
 }
 
 func (b Board) assignPos(pos int, marker string) Board {
@@ -90,7 +89,7 @@ func main() {
 	// gameOn := true
 	turn := 0
 
-	for true {
+	for {
 		if board.isFull() {
 			// Clear console
 			fmt.Print("\033[H\033[2J")
