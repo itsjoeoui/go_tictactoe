@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	fmt.Println("Welcome to TicTacToe!")
 
-	var myBoard = board{data: [10]string{" ", "1", "2", "3", "4", "5", "6", "7", "8", "9"}}
+	var myBoard = initBoard()
 
 	var player1 string
 	var player2 string
@@ -43,8 +43,10 @@ func main() {
 		fmt.Print("\033[H\033[2J")
 
 		fmt.Printf("It's %v's turn! [%v]\n", player, marker)
+
 		myBoard.displayBoard()
-		myBoard = myBoard.assignPos(myBoard.getPos(), marker)
+		myBoard.assignPos(myBoard.getPos(), marker)
+
 		turn++
 		if myBoard.checkWin() {
 			// Clear console
