@@ -7,12 +7,13 @@ func main() {
 
 	var myBoard = initBoard()
 
-	var player1 string
-	var player2 string
+	var player1 humanPlayer
 	fmt.Print("[Player1] - Please enter your name: ")
-	fmt.Scanln(&player1)
+	player1.assignName()
+
+	var player2 humanPlayer
 	fmt.Print("[Player2] - Please enter your name: ")
-	fmt.Scanln(&player2)
+	player2.assignName()
 
 	// gameOn := true
 	turn := 0
@@ -21,9 +22,7 @@ func main() {
 		if myBoard.isFull() {
 			// Clear console
 			fmt.Print("\033[H\033[2J")
-
 			fmt.Println("You two tied!")
-
 			myBoard.displayBoard()
 			break
 		}
@@ -32,10 +31,10 @@ func main() {
 		var marker string
 
 		if turn%2 == 0 {
-			player = player1
+			player = player1.name
 			marker = "X"
 		} else {
-			player = player2
+			player = player2.name
 			marker = "O"
 		}
 
@@ -51,13 +50,7 @@ func main() {
 		if myBoard.checkWin() {
 			// Clear console
 			fmt.Print("\033[H\033[2J")
-
-			if turn%2 != 0 {
-				fmt.Printf("Congratulations %v, you won!\n", player1)
-			} else {
-				fmt.Printf("Congratulations %v, you won!\n", player2)
-			}
-
+			fmt.Printf("Congratulations %v, you won!\n", player)
 			myBoard.displayBoard()
 			break
 		}
